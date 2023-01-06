@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1047351546320",
+    "project_id": "xamarin---lawyer-for-people",
+    "storage_bucket": "xamarin---lawyer-for-people.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047351546320:android:4f5ca69a69b8034836a9d5",
+        "android_client_info": {
+          "package_name": "ru.lawyer_for_people.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047351546320-90ch3vbfpdg2uoa889i8da65e1l6lo3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7T4AizYBwx_zxrqkKFbb293u50oUB48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047351546320-90ch3vbfpdg2uoa889i8da65e1l6lo3c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1047351546320-6gh9inagl032lgo3630sfp3cjd00gfbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lawyer.for.people"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
