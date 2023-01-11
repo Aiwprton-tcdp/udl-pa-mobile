@@ -24,10 +24,7 @@ import okhttp3.Response;
 
 public class DealsService {
     public static List<DealsModel> GetDeals() throws IOException, ExecutionException, InterruptedException {
-        List<DealsModel> Deals = getDealsData();
-        Log.i("GetDeals", Deals.toString());
-
-        return Deals;
+        return getDealsData();
     }
 
 
@@ -64,8 +61,8 @@ public class DealsService {
         List<DealsModel> ResultDeals = new ArrayList<>();
 
         for (Map.Entry<String,JsonElement> entry : data.entrySet()) {
-            Log.i("entry", entry.getKey());
-            Log.i("entry", entry.getValue().toString());
+//            Log.i("entry", entry.getKey());
+//            Log.i("entry", entry.getValue().toString());
 
             DealsModel dm = new DealsModel();
             dm.Name = entry.getKey();
