@@ -8,13 +8,14 @@
 <!--    </data>-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/deal_show"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.deals.DealsFragment">
-    <ListView
-        android:id="@android:id/list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deals_names"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -37,7 +38,7 @@
 <!--            android:orientation="vertical"-->
 <!--            android:entries="@array/deals_list_item"-->
 <!--            tools:ignore="AdapterViewChildren"/>-->
-    </ListView>
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->

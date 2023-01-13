@@ -1,68 +1,84 @@
 package com.aiwprton.udl_pa_mobile.ui.deals;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.aiwprton.udl_pa_mobile.R;
 import com.aiwprton.udl_pa_mobile.models.Deal;
 
 import java.util.ArrayList;
 
-public class DealsListAdapter extends ArrayAdapter<Deal> {
-    static class DealHolder {
-        ListView Name;
+public class DealsListAdapter extends RecyclerView.Adapter<DealsListAdapter.ViewHolder> {
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
     }
+
 
     private static ArrayList<Deal> dealsList;
     private LayoutInflater mInflater;
+    private ItemClickListener mClickListener;
 
 
     public DealsListAdapter(Context dealsFragment, ArrayList<Deal> data) {
-//        super(dealsFragment, -1, data);
-        super(dealsFragment, android.R.layout.simple_list_item_1, data);
         dealsList = data;
         mInflater = LayoutInflater.from(dealsFragment);
     }
 
 
+    // inflates the row layout from xml when needed
+    @NonNull
     @Override
-    public int getCount() {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.fragment_deals_row, parent, false);
+        return new ViewHolder(view);
+    }
+
+    // binds the data to the TextView in each row
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Deal deal = dealsList.get(position);
+        String s = String.format("№ %s (%s)", deal.ID, deal.BEGINDATE);
+        holder.Data.setText(s);
+    }
+
+    @Override
+    public int getItemCount() {
         return dealsList.size();
     }
 
-    @Override
     public Deal getItem(int arg0) {
         return dealsList.get(arg0);
     }
-
     @Override
     public long getItemId(int arg0) {
         return arg0;
     }
 
-    @SuppressLint("InflateParams")
-    public View getView(int position, View convertView, ViewGroup parent) {
-        DealHolder holder;
+    // allows clicks events to be caught
+    void setClickListener(ItemClickListener itemClickListener) {
+        mClickListener = itemClickListener;
+    }
 
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.fragment_deals, null);
-            holder = new DealHolder();
-            holder.Name = convertView.findViewById(android.R.id.list);
 
-            convertView.setTag(holder);
-        } else {
-            holder = (DealHolder) convertView.getTag();
+    // stores and recycles views as they are scrolled off screen
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView Data;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            Data = itemView.findViewById(R.id.deal_name);
+            itemView.setOnClickListener(this);
         }
 
-        Deal dm = getItem(position);
-        String s = String.format("№ %s (%s)", dm.ID, dm.BEGINDATE);
-        holder.Name.setTag(s);//.setText(dealsList.get(position).Name);
-
-        return convertView;
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null) mClickListener.onItemClick(view, getAbsoluteAdapterPosition());
+        }
     }
 }
